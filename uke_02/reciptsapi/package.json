@@ -1,0 +1,20 @@
+{
+    "name": "reciptsapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon server.js"
+    },
+    "keywords": [],
+    "author": "Abebe Bediye",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.19.2"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
+        "nodemon": "^3.1.4"
+    }
+}
