@@ -42,9 +42,9 @@ Ved slutten av denne oppgaven skal studentene ha laget et RESTful API for å adm
 4. Installer Nodemon som en utvikler avhengihet (devDependencie):
 
    ```bash
-   npm install --save-dev nodemon
+   npm install --save-dev nodemon @faker-js/faker
    # or 
-   npm i -D nodemon
+   npm i -D nodemon @faker-js/faker
    ```
 
    > [Tips!] Mange applikasjoner har en lang og en kort versjon av argumenter.
@@ -93,6 +93,7 @@ Ved slutten av denne oppgaven skal studentene ha laget et RESTful API for å adm
     // eller 
     const express = require('express'); // hvis du bruker type = commonjs i package json
 
+    const PORT = process.env.PORT || 3000;
     const app = express();
     
     // !OBS dette er en middleware - vi kommer tilbake til dette senere i semesteret
@@ -102,8 +103,9 @@ Ved slutten av denne oppgaven skal studentene ha laget et RESTful API for å adm
         res.send('Welcome to the Cooking Recipe API');
     });
 
-    const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => {
+    
+
+    app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
     });
 
@@ -346,26 +348,27 @@ Ved slutten av denne oppgaven skal studentene ha laget et RESTful API for å adm
 
    Eksempel:
 
-   ```javascript
-   app.get("/recipes/:id", (req, res) => {
-        // we are now using the id from the urls :id parameter instead of the body of the request
+    ```javascript
+    app.put("/recipes/:id", (req, res) => {
         const requested_id = req.params.id;
 
-        // find the recipe with the requested id
-        const recipe = recipes.find((r) => r.id === requested_id);
+        // find the index of the recipe with the requested id
+        const index = recipes.findIndex((r) => r.id === requested_id);
 
-        if (recipe) {
-            // if the recipe is found, return it as a response
-            res.json(recipe);
-        }
-        else {
+        if (index !== -1) {
+            // if the recipe is found, update it with the new data from the request
+            recipes[index] = { ...recipes[index].id, ...req.body };
+
+            // return the updated recipe as a response
+            res.json(recipes[index]);
+        } else {
             // if the recipe is not found, return an error response
             res.status(404).json({
                 error: `Recipe not found for id: ${requested_id}`,
             });
         }
-    });
-   ```
+        });
+    ```
 
 4. Slett en oppskrift (DELETE /recipes/:id):
 
