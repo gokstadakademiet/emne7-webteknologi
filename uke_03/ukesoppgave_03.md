@@ -17,7 +17,7 @@ Denne oppgaven gir studentene en omfattende innføring i MySQL-databaseadministr
   - [Trinn 2: Lese Data (SELECT)](#trinn-2-lese-data-select)
   - [Trinn 3: Oppdatere Data (UPDATE)](#trinn-3-oppdatere-data-update)
   - [Trinn 4: Slette Data (DELETE)](#trinn-4-slette-data-delete)
-- [Del 4: Bruke SQL i Node.js Express API med ES6+](#del-4-bruke-sql-i-nodejs-express-api-med-es6)
+- [Del 4: Bruke SQL i Node.js Express API](#del-4-bruke-sql-i-nodejs-express-api)
   - [Trinn 1: Opprett en Ny Node.js Express Applikasjon](#trinn-1-opprett-en-ny-nodejs-express-applikasjon)
   - [Trinn 2: Konfigurer MySQL-tilkobling i Express](#trinn-2-konfigurer-mysql-tilkobling-i-express)
   - [Trinn 3: Lag API-endepunkter for CRUD-operasjoner](#trinn-3-lag-api-endepunkter-for-crud-operasjoner)
@@ -525,7 +525,7 @@ DELETE-kommandoen brukes for å slette rader fra en tabell. Vær forsiktig med d
 
 <br><br><br>
 
-## Del 4: Bruke SQL i Node.js Express API med ES6+
+## Del 4: Bruke SQL i Node.js Express API
 
 I denne delen skal du lære hvordan du kan koble en Node.js Express-applikasjon til MySQL-serveren din og utføre SQL-spørringer fra API-et ditt. Du vil bruke moderne ES6+ syntaks for å skrive koden din, noe som gjør koden mer lesbar og effektiv.
 
