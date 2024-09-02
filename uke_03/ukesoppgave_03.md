@@ -1,83 +1,36 @@
+# Ukesoppgave 03 - MySql
+
+Denne oppgaven gir studentene en omfattende innføring i MySQL-databaseadministrasjon og integrasjon med en Node.js-applikasjon. Studentene starter med å installere MySQL Server og MySQL Workbench på både Windows og macOS, med et alternativ for macOS-brukere til å bruke Homebrew. Deretter lærer de å konfigurere MySQL Server, opprette en applikasjonsbruker, og sette opp en database med tilhørende tabeller, samtidig som de får en grunnleggende forståelse av tabellkomponenter. Videre får studentene praktisk erfaring med å utføre CRUD-operasjoner (Create, Read, Update, Delete) på databasen ved hjelp av SQL-spørringer. I neste del øver de på å integrere MySQL med en Node.js Express-applikasjon, hvor de setter opp API-endepunkter for CRUD-operasjoner. Til slutt introduseres de for Prisma ORM, et moderne ORM-verktøy, som tilbyr en type-sikker og forenklet tilnærming til databaseinteraksjon i applikasjoner. Gjennom disse delene får studentene både praktisk erfaring og teoretisk forståelse av databaseadministrasjon og backend-utvikling.
+
+<br>
 
 <!-- toc -->
-
 - [Del 1: Installere MySQL Server og MySQL Workbench](#del-1-installere-mysql-server-og-mysql-workbench)
   - [Installere på Windows](#installere-på-windows)
-    - [Trinn 1: Last ned MySQL Installer](#trinn-1-last-ned-mysql-installer)
-    - [Trinn 2: Kjør MySQL Installer](#trinn-2-kjør-mysql-installer)
-    - [Trinn 3: Konfigurer MySQL Server](#trinn-3-konfigurer-mysql-server)
-    - [Trinn 4: Start og Test MySQL Server](#trinn-4-start-og-test-mysql-server)
   - [Installere på macOS](#installere-på-macos)
-    - [Metode 1: Bruke Homebrew (Anbefalt)](#metode-1-bruke-homebrew-anbefalt)
-      - [Trinn 1: Installer Homebrew (hvis ikke allerede installert)](#trinn-1-installer-homebrew-hvis-ikke-allerede-installert)
-      - [Trinn 2: Installer MySQL Server via Homebrew](#trinn-2-installer-mysql-server-via-homebrew)
-      - [Trinn 3: Installer MySQL Workbench via Homebrew](#trinn-3-installer-mysql-workbench-via-homebrew)
-      - [Trinn 4: Konfigurer MySQL Workbench](#trinn-4-konfigurer-mysql-workbench)
-    - [Metode 2: Tradisjonell Nedlasting](#metode-2-tradisjonell-nedlasting)
-      - [Trinn 1: Last ned MySQL DMG-fil](#trinn-1-last-ned-mysql-dmg-fil)
-      - [Trinn 2: Installer MySQL Server](#trinn-2-installer-mysql-server)
-      - [Trinn 3: Last ned og Installer MySQL Workbench](#trinn-3-last-ned-og-installer-mysql-workbench)
-      - [Trinn 4: Konfigurer MySQL Workbench](#trinn-4-konfigurer-mysql-workbench-1)
 - [Del 2: Konfigurere MySQL Server og Opprette en Database og Tabell](#del-2-konfigurere-mysql-server-og-opprette-en-database-og-tabell)
   - [Trinn 1: Konfigurer MySQL Server med en Applikasjonsbruker](#trinn-1-konfigurer-mysql-server-med-en-applikasjonsbruker)
-    - [Hvorfor Opprette en Applikasjonsbruker?](#hvorfor-opprette-en-applikasjonsbruker)
-    - [Trinn 1.1: Logg Inn på MySQL Workbench](#trinn-11-logg-inn-på-mysql-workbench)
-    - [Trinn 1.2: Opprett en Ny Bruker](#trinn-12-opprett-en-ny-bruker)
-    - [Trinn 1.3: Test den Nye Brukeren](#trinn-13-test-den-nye-brukeren)
   - [Trinn 2: Opprett en Database](#trinn-2-opprett-en-database)
-    - [Hva er en Database?](#hva-er-en-database)
-    - [Trinn 2.1: Opprett en Ny Database](#trinn-21-opprett-en-ny-database)
   - [Trinn 3: Opprett en Tabell i Databasen](#trinn-3-opprett-en-tabell-i-databasen)
-    - [Hva er en Tabell?](#hva-er-en-tabell)
-    - [Trinn 3.1: Velg Databasen](#trinn-31-velg-databasen)
-    - [Trinn 3.2: Opprett en Ny Tabell](#trinn-32-opprett-en-ny-tabell)
 - [Del 3: Legge til, Oppdatere, Lese og Slette Data fra Tabellen](#del-3-legge-til-oppdatere-lese-og-slette-data-fra-tabellen)
   - [Trinn 1: Legge til Data (INSERT)](#trinn-1-legge-til-data-insert)
-    - [Hva er en INSERT-kommando?](#hva-er-en-insert-kommando)
-    - [Trinn 1.1: Legg til en Ny Rad i Tabellen](#trinn-11-legg-til-en-ny-rad-i-tabellen)
-    - [Trinn 1.2: Legg til Flere Rader](#trinn-12-legg-til-flere-rader)
   - [Trinn 2: Lese Data (SELECT)](#trinn-2-lese-data-select)
-    - [Hva er en SELECT-kommando?](#hva-er-en-select-kommando)
-    - [Trinn 2.1: Hent Alle Data fra Tabellen](#trinn-21-hent-alle-data-fra-tabellen)
-    - [Trinn 2.2: Hent Spesifikke Kolonner](#trinn-22-hent-spesifikke-kolonner)
-    - [Trinn 2.3: Filtrer Resultatene med WHERE](#trinn-23-filtrer-resultatene-med-where)
   - [Trinn 3: Oppdatere Data (UPDATE)](#trinn-3-oppdatere-data-update)
-    - [Hva er en UPDATE-kommando?](#hva-er-en-update-kommando)
-    - [Trinn 3.1: Oppdater Studentens Data](#trinn-31-oppdater-studentens-data)
   - [Trinn 4: Slette Data (DELETE)](#trinn-4-slette-data-delete)
-    - [Hva er en DELETE-kommando?](#hva-er-en-delete-kommando)
-    - [Trinn 4.1: Slett en Rad](#trinn-41-slett-en-rad)
 - [Del 4: Bruke SQL i Node.js Express API med ES6+](#del-4-bruke-sql-i-nodejs-express-api-med-es6)
-  - [Introduksjon](#introduksjon)
-  - [Forutsetninger](#forutsetninger)
   - [Trinn 1: Opprett en Ny Node.js Express Applikasjon](#trinn-1-opprett-en-ny-nodejs-express-applikasjon)
-    - [Trinn 1.1: Initialiser en Ny Node.js Applikasjon](#trinn-11-initialiser-en-ny-nodejs-applikasjon)
-    - [Trinn 1.2: Installer Nødvendige Pakker](#trinn-12-installer-nødvendige-pakker)
   - [Trinn 2: Konfigurer MySQL-tilkobling i Express](#trinn-2-konfigurer-mysql-tilkobling-i-express)
-    - [Trinn 2.1: Opprett en MySQL-Tilkobling](#trinn-21-opprett-en-mysql-tilkobling)
   - [Trinn 3: Lag API-endepunkter for CRUD-operasjoner](#trinn-3-lag-api-endepunkter-for-crud-operasjoner)
-    - [Trinn 3.1: Lag et Endepunkt for å Lese Data (GET)](#trinn-31-lag-et-endepunkt-for-å-lese-data-get)
-    - [Trinn 3.2: Lag et Endepunkt for å Legge til Data (POST)](#trinn-32-lag-et-endepunkt-for-å-legge-til-data-post)
-    - [Trinn 3.3: Lag et Endepunkt for å Oppdatere Data (PUT)](#trinn-33-lag-et-endepunkt-for-å-oppdatere-data-put)
-    - [Trinn 3.4: Lag et Endepunkt for å Slette Data (DELETE)](#trinn-34-lag-et-endepunkt-for-å-slette-data-delete)
 - [Alternativ Del 5: Bruke Prisma ORM i Node.js Express API](#alternativ-del-5-bruke-prisma-orm-i-nodejs-express-api)
-  - [Forutsetninger](#forutsetninger-1)
   - [Trinn 1: Installer Prisma og Nødvendige Avhengigheter](#trinn-1-installer-prisma-og-nødvendige-avhengigheter)
-    - [Trinn 1.1: Installer Prisma CLI og MySQL2](#trinn-11-installer-prisma-cli-og-mysql2)
-    - [Trinn 1.2: Konfigurer Prisma-skjema](#trinn-12-konfigurer-prisma-skjema)
   - [Trinn 2: Generer Prisma Client og Migrer Database](#trinn-2-generer-prisma-client-og-migrer-database)
-    - [Trinn 2.1: Generer Prisma Client](#trinn-21-generer-prisma-client)
-    - [Trinn 2.2: Kjør Migrasjon for å Opprette Tabellen](#trinn-22-kjør-migrasjon-for-å-opprette-tabellen)
   - [Trinn 3: Lag API-endepunkter ved hjelp av Prisma](#trinn-3-lag-api-endepunkter-ved-hjelp-av-prisma)
-    - [Trinn 3.1: Sett opp Prisma Client i Express](#trinn-31-sett-opp-prisma-client-i-express)
-    - [Trinn 3.2: Lag et Endepunkt for å Lese Data (GET)](#trinn-32-lag-et-endepunkt-for-å-lese-data-get)
-    - [Trinn 3.3: Lag et Endepunkt for å Legge til Data (POST)](#trinn-33-lag-et-endepunkt-for-å-legge-til-data-post)
-    - [Trinn 3.4: Lag et Endepunkt for å Oppdatere Data (PUT)](#trinn-34-lag-et-endepunkt-for-å-oppdatere-data-put)
-    - [Trinn 3.5: Lag et Endepunkt for å Slette Data (DELETE)](#trinn-35-lag-et-endepunkt-for-å-slette-data-delete)
 
 <!-- tocstop -->
 
-# Del 1: Installere MySQL Server og MySQL Workbench
+<br>
+
+## Del 1: Installere MySQL Server og MySQL Workbench
 
 Før vi begynner, er det viktig å forstå hva vi installerer:
 
@@ -85,11 +38,11 @@ Før vi begynner, er det viktig å forstå hva vi installerer:
   
 - **MySQL Workbench:** Dette er et grafisk brukergrensesnitt (GUI) verktøy som gjør det enklere å administrere MySQL-serveren. Med Workbench kan du designe databaser, skrive og kjøre SQL-spørringer, samt administrere brukere og rettigheter uten å bruke kommandolinjen.
 
-## Installere på Windows
+### Installere på Windows
 
 Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en Windows-maskin:
 
-### Trinn 1: Last ned MySQL Installer
+#### Trinn 1: Last ned MySQL Installer
 
 1. **Gå til MySQLs offisielle nedlastingsside:**
    - Åpne din nettleser og naviger til [MySQL Community Downloads](https://dev.mysql.com/downloads/installer/).
@@ -103,7 +56,7 @@ Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en Wi
 3. **Logg inn eller fortsett uten å logge inn:**
    - Du blir bedt om å logge inn eller registrere deg, men du kan klikke på "No thanks, just start my download." for å fortsette uten å logge inn.
 
-### Trinn 2: Kjør MySQL Installer
+#### Trinn 2: Kjør MySQL Installer
 
 1. **Åpne den nedlastede filen:**
    - Finn den nedlastede `.msi`-filen i nedlastingsmappen din og dobbeltklikk for å starte installasjonsprosessen.
@@ -123,7 +76,7 @@ Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en Wi
 4. **Installer produktene:**
    - Klikk på "Execute" for å begynne installasjonen av de valgte komponentene. Dette kan ta noen minutter.
 
-### Trinn 3: Konfigurer MySQL Server
+#### Trinn 3: Konfigurer MySQL Server
 
 1. **Start konfigurasjonsveiviseren:**
    - Etter installasjonen åpnes MySQL Configuration Wizard automatisk. Hvis ikke, kan du åpne den fra Start-menyen under MySQL > MySQL Installer > Configure.
@@ -147,7 +100,7 @@ Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en Wi
    - Klikk "Execute" for å anvende konfigurasjonene.
    - Når prosessen er fullført, klikk "Finish".
 
-### Trinn 4: Start og Test MySQL Server
+#### Trinn 4: Start og Test MySQL Server
 
 1. **Start MySQL Workbench:**
    - Etter installasjonen kan du åpne MySQL Workbench fra Start-menyen under MySQL > MySQL Workbench.
@@ -164,11 +117,11 @@ Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en Wi
 3. **Bekreft at serveren kjører:**
    - Dobbeltklikk på den nylig opprettede tilkoblingen for å koble til MySQL-serveren. Hvis du ser en vellykket tilkobling, er installasjonen fullført.
 
-## Installere på macOS
+### Installere på macOS
 
 Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en macOS-maskin. Vi inkluderer både en metode ved bruk av Homebrew og en tradisjonell nedlasting.
 
-### Metode 1: Bruke Homebrew (Anbefalt)
+#### Metode 1: Bruke Homebrew (Anbefalt)
 
 **Homebrew** er en populær pakkebehandler for macOS som gjør installasjon og administrasjon av programvare enklere.
 
@@ -250,11 +203,9 @@ Følg disse trinnene for å installere MySQL Server og MySQL Workbench på en ma
 2. **Bekreft at serveren kjører:**
    - Dobbeltklikk på den nylig opprettede tilkoblingen for å koble til MySQL-serveren. Hvis du ser en vellykket tilkobling, er installasjonen fullført.
 
-### Metode 2: Tradisjonell Nedlasting
+#### Metode 2: Tradisjonell Nedlasting
 
-Hvis du
-
- foretrekker å laste ned og installere MySQL manuelt, kan du følge disse trinnene:
+Hvis du foretrekker å laste ned og installere MySQL manuelt, kan du følge disse trinnene:
 
 #### Trinn 1: Last ned MySQL DMG-fil
 
@@ -300,20 +251,19 @@ Hvis du
 2. **Opprett en ny tilkobling:**
    - Følg de samme trinnene som i Metode 1 for å opprette og teste en ny tilkobling til MySQL-serveren.
 
-<br><br>
+<br><br><br>
 
-# Del 2: Konfigurere MySQL Server og Opprette en Database og Tabell
+## Del 2: Konfigurere MySQL Server og Opprette en Database og Tabell
 
-<br>
 Nå som MySQL Server og MySQL Workbench er installert, er det på tide å konfigurere serveren med en bruker og opprette en database. Deretter skal vi opprette en tabell i denne databasen. En tabell er en strukturert samling av data i rader og kolonner, og hver kolonne representerer en type data, mens hver rad representerer en post.
 
-## Trinn 1: Konfigurer MySQL Server med en Applikasjonsbruker
+### Trinn 1: Konfigurer MySQL Server med en Applikasjonsbruker
 
-### Hvorfor Opprette en Applikasjonsbruker?
+#### Hvorfor Opprette en Applikasjonsbruker?
 
 Det er god praksis å ikke bruke `root`-kontoen til applikasjoner som trenger tilgang til databasen. I stedet oppretter vi en dedikert bruker med begrensede rettigheter for sikkerhet og kontroll.
 
-### Trinn 1.1: Logg Inn på MySQL Workbench
+#### Trinn 1.1: Logg Inn på MySQL Workbench
 
 1. **Åpne MySQL Workbench:**
    - Start MySQL Workbench fra Start-menyen (Windows) eller Programmer-mappen (macOS).
@@ -322,7 +272,7 @@ Det er god praksis å ikke bruke `root`-kontoen til applikasjoner som trenger ti
    - Dobbeltklikk på tilkoblingen du opprettet i Del 1 (f.eks. "Local MySQL").
    - Skriv inn `root`-passordet ditt hvis det blir bedt om det.
 
-### Trinn 1.2: Opprett en Ny Bruker
+#### Trinn 1.2: Opprett en Ny Bruker
 
 1. **Åpne Bruker- og Rettighetsadministrasjon:**
    - I MySQL Workbench, naviger til `Server > Users and Privileges` fra menylinjen.
@@ -340,7 +290,7 @@ Det er god praksis å ikke bruke `root`-kontoen til applikasjoner som trenger ti
 4. **Lagre Brukeren:**
    - Klikk "Apply" for å lagre den nye brukeren.
 
-### Trinn 1.3: Test den Nye Brukeren
+#### Trinn 1.3: Test den Nye Brukeren
 
 1. **Koble fra den Nåværende Tilkoblingen:**
    - Gå til `File > Close All` for å lukke alle åpne tilkoblinger.
@@ -352,13 +302,13 @@ Det er god praksis å ikke bruke `root`-kontoen til applikasjoner som trenger ti
    - Klikk "Test Connection" og skriv inn passordet for å teste tilkoblingen.
    - Hvis testen er vellykket, klikk "OK" for å lagre tilkoblingen.
 
-## Trinn 2: Opprett en Database
+### Trinn 2: Opprett en Database
 
-### Hva er en Database?
+#### Hva er en Database?
 
 En database er en strukturert samling av data som kan administreres, søkes og hentes av MySQL-serveren. Databasen inneholder en eller flere tabeller, som hver lagrer data om et spesifikt emne.
 
-### Trinn 2.1: Opprett en Ny Database
+#### Trinn 2.1: Opprett en Ny Database
 
 1. **Koble til MySQL Server:**
    - Bruk den nye tilkoblingen du opprettet for `app_user`.
@@ -375,13 +325,13 @@ En database er en strukturert samling av data som kan administreres, søkes og h
 3. **Verifiser Databasen:**
    - Gå til "Schemas" panelet til venstre i Workbench, høyreklikk og velg "Refresh All" for å oppdatere listen. Du skal nå se `student_database` i listen over databaser.
 
-## Trinn 3: Opprett en Tabell i Databasen
+### Trinn 3: Opprett en Tabell i Databasen
 
-### Hva er en Tabell?
+#### Hva er en Tabell?
 
 En tabell i en database er en struktur som består av kolonner (felter) og rader (poster). Hver kolonne har et navn og en datatype som spesifiserer hva slags data kolonnen kan inneholde (f.eks. tekst, tall, datoer). Hver rad i tabellen representerer en individuell post.
 
-### Trinn 3.1: Velg Databasen
+#### Trinn 3.1: Velg Databasen
 
 1. **Velg `student_database`:**
    - Sørg for at du er koblet til MySQL-serveren med `app_user`.
@@ -391,7 +341,7 @@ En tabell i en database er en struktur som består av kolonner (felter) og rader
      USE student_database;
      ```
 
-### Trinn 3.2: Opprett en Ny Tabell
+#### Trinn 3.2: Opprett en Ny Tabell
 
 1. **Opprett Tabellen:**
    - Skriv inn følgende SQL-kommando for å opprette en tabell kalt `students`:
@@ -419,17 +369,17 @@ En tabell i en database er en struktur som består av kolonner (felter) og rader
 
 <br><br><br>
 
-# Del 3: Legge til, Oppdatere, Lese og Slette Data fra Tabellen
+## Del 3: Legge til, Oppdatere, Lese og Slette Data fra Tabellen
 
 I denne delen skal vi jobbe med dataene i tabellen du opprettet i Del 2. Vi skal lære hvordan du kan legge til nye rader (poster) i tabellen, oppdatere eksisterende data, lese (hente) data, og slette uønskede rader.
 
-## Trinn 1: Legge til Data (INSERT)
+### Trinn 1: Legge til Data (INSERT)
 
-### Hva er en INSERT-kommando?
+#### Hva er en INSERT-kommando?
 
 INSERT-kommandoen brukes for å legge til nye rader i en tabell. Hver ny rad vil inneholde data som samsvarer med kolonnene i tabellen.
 
-### Trinn 1.1: Legg til en Ny Rad i Tabellen
+#### Trinn 1.1: Legg til en Ny Rad i Tabellen
 
 1. **Velg Databasen:**
    - Før du kan legge til data, må du forsikre deg om at du bruker riktig database. Skriv inn:
@@ -458,7 +408,7 @@ INSERT-kommandoen brukes for å legge til nye rader i en tabell. Hver ny rad vil
 4. **Verifiser Dataene:**
    - Du kan sjekke at dataene ble lagt til ved å lese fra tabellen (se Trinn 3.1 nedenfor).
 
-### Trinn 1.2: Legg til Flere Rader
+#### Trinn 1.2: Legg til Flere Rader
 
 1. **Legg til Flere Studenter:**
    - Du kan legge til flere rader ved å bruke flere INSERT-kommandoer:
@@ -474,13 +424,13 @@ INSERT-kommandoen brukes for å legge til nye rader i en tabell. Hver ny rad vil
 2. **Kjør Kommandoene:**
    - Kjør begge INSERT-kommandoene for å legge til de nye studentene i tabellen.
 
-## Trinn 2: Lese Data (SELECT)
+### Trinn 2: Lese Data (SELECT)
 
-### Hva er en SELECT-kommando?
+#### Hva er en SELECT-kommando?
 
 SELECT-kommandoen brukes for å hente data fra en tabell. Du kan velge hvilke kolonner du vil se, og filtrere resultatene ved å bruke forskjellige kriterier.
 
-### Trinn 2.1: Hent Alle Data fra Tabellen
+#### Trinn 2.1: Hent Alle Data fra Tabellen
 
 1. **Skriv en Enkel SELECT-kommando:**
    - For å hente alle rader og kolonner fra `students`-tabellen, skriv:
@@ -497,7 +447,7 @@ SELECT-kommandoen brukes for å hente data fra en tabell. Du kan velge hvilke ko
    - Klikk på Execute-ikonet eller trykk `Ctrl + Enter` for å kjøre SELECT-kommandoen.
    - Resultatene vises i et rutenett under SQL Editor.
 
-### Trinn 2.2: Hent Spesifikke Kolonner
+#### Trinn 2.2: Hent Spesifikke Kolonner
 
 1. **Velg Spesifikke Kolonner:**
    - For å hente bare studentenes for- og etternavn, skriv:
@@ -509,7 +459,7 @@ SELECT-kommandoen brukes for å hente data fra en tabell. Du kan velge hvilke ko
 2. **Kjør Kommandoen:**
    - Klikk på Execute for å kjøre denne kommandoen. Nå vil bare fornavn og etternavn vises i resultatene.
 
-### Trinn 2.3: Filtrer Resultatene med WHERE
+#### Trinn 2.3: Filtrer Resultatene med WHERE
 
 1. **Bruk WHERE for å Filtrere Resultater:**
    - For å hente data om en spesifikk student, for eksempel en med etternavn "Smith", skriv:
@@ -521,13 +471,13 @@ SELECT-kommandoen brukes for å hente data fra en tabell. Du kan velge hvilke ko
 2. **Kjør Kommandoen:**
    - Klikk på Execute for å se resultatene. Bare rader hvor `last_name` er "Smith" vil bli vist.
 
-## Trinn 3: Oppdatere Data (UPDATE)
+### Trinn 3: Oppdatere Data (UPDATE)
 
-### Hva er en UPDATE-kommando?
+#### Hva er en UPDATE-kommando?
 
 UPDATE-kommandoen brukes for å endre eksisterende data i en tabell. Du kan spesifisere hvilke rader som skal oppdateres og hvilke kolonner som skal endres.
 
-### Trinn 3.1: Oppdater Studentens Data
+#### Trinn 3.1: Oppdater Studentens Data
 
 1. **Velg Raden du Vil Oppdatere:**
    - For å oppdatere fornavnet til studenten med `student_id` 1, skriv:
@@ -548,13 +498,13 @@ UPDATE-kommandoen brukes for å endre eksisterende data i en tabell. Du kan spes
 4. **Verifiser Oppdateringen:**
    - Bruk en SELECT-kommando (f.eks. `SELECT * FROM students WHERE student_id = 1;`) for å bekrefte at oppdateringen var vellykket.
 
-## Trinn 4: Slette Data (DELETE)
+### Trinn 4: Slette Data (DELETE)
 
-### Hva er en DELETE-kommando?
+#### Hva er en DELETE-kommando?
 
 DELETE-kommandoen brukes for å slette rader fra en tabell. Vær forsiktig med denne kommandoen, da slettede data ikke kan gjenopprettes.
 
-### Trinn 4.1: Slett en Rad
+#### Trinn 4.1: Slett en Rad
 
 1. **Skriv en DELETE-kommando:**
    - For å slette studenten med `student_id` 1, skriv:
@@ -575,23 +525,15 @@ DELETE-kommandoen brukes for å slette rader fra en tabell. Vær forsiktig med d
 
 <br><br><br>
 
-Her er Del 4 med bruk av ES6+ syntaks i Markdown-format:
-
----
-
-# Del 4: Bruke SQL i Node.js Express API med ES6+
-
-## Introduksjon
+## Del 4: Bruke SQL i Node.js Express API med ES6+
 
 I denne delen skal du lære hvordan du kan koble en Node.js Express-applikasjon til MySQL-serveren din og utføre SQL-spørringer fra API-et ditt. Du vil bruke moderne ES6+ syntaks for å skrive koden din, noe som gjør koden mer lesbar og effektiv.
 
-## Forutsetninger
-
 Før du starter, må du ha Node.js og npm (Node Package Manager) installert på din maskin. Hvis du ikke har det, kan du laste ned og installere det fra [Node.js offisielle nettside](https://nodejs.org/).
 
-## Trinn 1: Opprett en Ny Node.js Express Applikasjon
+### Trinn 1: Opprett en Ny Node.js Express Applikasjon
 
-### Trinn 1.1: Initialiser en Ny Node.js Applikasjon
+#### Trinn 1.1: Initialiser en Ny Node.js Applikasjon
 
 1. **Lag en Ny Mappe for Prosjektet:**
    - Åpne terminalen (kommandolinjen) og naviger til ønsket sted, deretter skriv:
@@ -610,7 +552,7 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
 
    - Dette vil opprette en `package.json`-fil som holder styr på avhengighetene dine.
 
-### Trinn 1.2: Installer Nødvendige Pakker
+#### Trinn 1.2: Installer Nødvendige Pakker
 
 1. **Installer Express og MySQL:**
    - For å sette opp en enkel server og koble til MySQL, installer følgende pakker:
@@ -642,9 +584,9 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
 
    - Dette gjør at du kan starte serveren med `npm start` og automatisk oppdatere serveren når du gjør endringer.
 
-## Trinn 2: Konfigurer MySQL-tilkobling i Express
+### Trinn 2: Konfigurer MySQL-tilkobling i Express
 
-### Trinn 2.1: Opprett en MySQL-Tilkobling
+#### Trinn 2.1: Opprett en MySQL-Tilkobling
 
 1. **Opprett en Fil for Serveren:**
    - Lag en ny fil kalt `index.js` i prosjektmappen din:
@@ -700,9 +642,9 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
 
    - Hvis alt er konfigurert riktig, bør du se meldingen "Koblet til MySQL database" i terminalen, etterfulgt av "Server kjører på port 3000".
 
-## Trinn 3: Lag API-endepunkter for CRUD-operasjoner
+### Trinn 3: Lag API-endepunkter for CRUD-operasjoner
 
-### Trinn 3.1: Lag et Endepunkt for å Lese Data (GET)
+#### Trinn 3.1: Lag et Endepunkt for å Lese Data (GET)
 
 1. **Opprett et GET-endepunkt:**
    - I `index.js`, legg til følgende kode for å opprette et GET-endepunkt som henter alle studenter fra databasen:
@@ -725,7 +667,7 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
    - Åpne en nettleser eller bruk et verktøy som Postman og naviger til `http://localhost:3000/students`.
    - Du bør få tilbake en liste over alle studentene i `students`-tabellen som JSON.
 
-### Trinn 3.2: Lag et Endepunkt for å Legge til Data (POST)
+#### Trinn 3.2: Lag et Endepunkt for å Legge til Data (POST)
 
 1. **Aktiver Parsing av JSON-data:**
    - Før du kan legge til data, må du sørge for at Express kan lese JSON-innhold i forespørsler:
@@ -765,7 +707,7 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
 
    - Hvis alt fungerer som det skal, vil serveren returnere "Student lagt til".
 
-### Trinn 3.3: Lag et Endepunkt for å Oppdatere Data (PUT)
+#### Trinn 3.3: Lag et Endepunkt for å Oppdatere Data (PUT)
 
 1. **Opprett et PUT-endepunkt:**
    - Legg til følgende kode for å opprette et PUT-endepunkt som oppdaterer en eksisterende student:
@@ -789,7 +731,7 @@ Før du starter, må du ha Node.js og npm (Node Package Manager) installert på 
 2. **Test PUT-endepunktet:**
    - Bruk Postman til å sende en PUT-forespørsel til `http://localhost:3000/students/1` med en JSON-body som oppdaterer dataene for student med `student_id` 1.
 
-### Trinn 3.4: Lag et Endepunkt for å Slette Data (DELETE)
+#### Trinn 3.4: Lag et Endepunkt for å Slette Data (DELETE)
 
 1. **Opprett et DELETE-endepunkt:**
    - Legg til følgende kode for å opprette et DELETE-endepunkt som sletter en student:
@@ -816,17 +758,15 @@ Her er den alternative delen med bruk av **Prisma ORM** i stedet for Sequelize. 
 
 <br><br><br>
 
-# Alternativ Del 5: Bruke Prisma ORM i Node.js Express API
+## Alternativ Del 5: Bruke Prisma ORM i Node.js Express API
 
 I denne alternative delen skal du lære hvordan du kan bruke **Prisma ORM** for å koble en Node.js Express-applikasjon til MySQL-serveren din. Prisma tilbyr en moderne, type-sikker måte å samhandle med databasen på, som gjør koden mer robust og enkel å vedlikeholde.
 
-## Forutsetninger
-
 Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-server satt opp med en database, slik som i tidligere deler av oppgaven.
 
-## Trinn 1: Installer Prisma og Nødvendige Avhengigheter
+### Trinn 1: Installer Prisma og Nødvendige Avhengigheter
 
-### Trinn 1.1: Installer Prisma CLI og MySQL2
+#### Trinn 1.1: Installer Prisma CLI og MySQL2
 
 1. **Installer Prisma CLI og MySQL2:**
    - MySQL2 er en nødvendig avhengighet for å bruke Prisma med MySQL.
@@ -845,7 +785,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
 
    - Dette oppretter en `prisma`-mappe med en `schema.prisma`-fil som inneholder Prisma-skjemaet ditt, samt oppdaterer `package.json` med nødvendige skript.
 
-### Trinn 1.2: Konfigurer Prisma-skjema
+#### Trinn 1.2: Konfigurer Prisma-skjema
 
 1. **Konfigurer `schema.prisma`:**
    - Åpne `prisma/schema.prisma` og konfigurer det slik at det kobler til MySQL-databasen:
@@ -879,9 +819,9 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      DATABASE_URL="mysql://app_user:your_password@localhost:3306/student_database"
      ```
 
-## Trinn 2: Generer Prisma Client og Migrer Database
+### Trinn 2: Generer Prisma Client og Migrer Database
 
-### Trinn 2.1: Generer Prisma Client
+#### Trinn 2.1: Generer Prisma Client
 
 1. **Generer Prisma Client:**
    - Kjør følgende kommando for å generere Prisma Client basert på skjemaet:
@@ -892,7 +832,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
 
    - Dette genererer TypeScript- eller JavaScript-kode for å jobbe med datamodellene dine.
 
-### Trinn 2.2: Kjør Migrasjon for å Opprette Tabellen
+#### Trinn 2.2: Kjør Migrasjon for å Opprette Tabellen
 
 1. **Kjør første migrasjon:**
    - Lag en migrasjon som oppretter `students`-tabellen i databasen:
@@ -905,9 +845,9 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      - `migrate dev`: Brukes til å kjøre migrasjoner under utvikling.
      - `--name init`: Gir migrasjonen et navn (her `init` for initialisering).
 
-## Trinn 3: Lag API-endepunkter ved hjelp av Prisma
+### Trinn 3: Lag API-endepunkter ved hjelp av Prisma
 
-### Trinn 3.1: Sett opp Prisma Client i Express
+#### Trinn 3.1: Sett opp Prisma Client i Express
 
 1. **Opprett Prisma Client i `index.js`:**
    - Åpne `index.js` og legg til følgende kode for å sette opp Prisma Client:
@@ -923,7 +863,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      });
      ```
 
-### Trinn 3.2: Lag et Endepunkt for å Lese Data (GET)
+#### Trinn 3.2: Lag et Endepunkt for å Lese Data (GET)
 
 1. **Opprett et GET-endepunkt:**
    - I `index.js`, legg til følgende kode for å opprette et GET-endepunkt som henter alle studenter fra databasen:
@@ -939,7 +879,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      });
      ```
 
-### Trinn 3.3: Lag et Endepunkt for å Legge til Data (POST)
+#### Trinn 3.3: Lag et Endepunkt for å Legge til Data (POST)
 
 1. **Opprett et POST-endepunkt:**
    - Legg til følgende kode i `index.js` for å opprette et POST-endepunkt som legger til en ny student:
@@ -958,7 +898,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      });
      ```
 
-### Trinn 3.4: Lag et Endepunkt for å Oppdatere Data (PUT)
+#### Trinn 3.4: Lag et Endepunkt for å Oppdatere Data (PUT)
 
 1. **Opprett et PUT-endepunkt:**
    - Legg til følgende kode for å opprette et PUT-endepunkt som oppdaterer en eksisterende student:
@@ -979,7 +919,7 @@ Før du starter, må du ha Node.js og npm installert. Du bør også ha en MySQL-
      });
      ```
 
-### Trinn 3.5: Lag et Endepunkt for å Slette Data (DELETE)
+#### Trinn 3.5: Lag et Endepunkt for å Slette Data (DELETE)
 
 1. **Opprett et DELETE-endepunkt:**
    - Legg til følgende kode for å opprette et DELETE-endepunkt som sletter en student:
