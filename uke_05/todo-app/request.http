@@ -1,0 +1,30 @@
+post http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "abebe",
+    "password": "password"
+}
+
+###
+
+// forventer at denne skal feile
+post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "abebe",
+    "password": "ugyldig-passord"
+}
+
+
+###
+
+// forventer at denne skal lykkes
+post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "abebe",
+    "password": "password"
+}

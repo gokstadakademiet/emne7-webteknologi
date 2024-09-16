@@ -1,0 +1,22 @@
+{
+    "name": "todo-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Abebe Bediye",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "express": "^4.21.0",
+        "mysql2": "^3.11.3"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.4"
+    }
+}
