@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.14">
+  <diagram name="Page-1" id="rvZZ1oX0dXnpBEj5fjDv">
+    <mxGraphModel dx="748" dy="472" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kfbttW8s38c1ocRf18WO-25" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="420" y="690" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="112.5" y="340" width="367.5" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-1" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/laptop_client.svg;" vertex="1" parent="1">
+          <mxGeometry x="150" y="380" width="45" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-2" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/database_server.svg;" vertex="1" parent="1">
+          <mxGeometry x="373" y="380" width="41" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-3" value="Client" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="145" y="428" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-4" value="server" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="428" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-7" value="lcoalhost" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="112.5" y="340" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-8" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="550" as="sourcePoint" />
+            <mxPoint x="160" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-9" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="548" as="sourcePoint" />
+            <mxPoint x="400" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-10" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="560" as="sourcePoint" />
+            <mxPoint x="400" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-11" value="req" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="kfbttW8s38c1ocRf18WO-10">
+          <mxGeometry x="-0.2254" y="1" relative="1" as="geometry">
+            <mxPoint x="27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-12" value="path: /banskstatements/:id" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="190" y="508" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-13" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="840" as="sourcePoint" />
+            <mxPoint x="160" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-14" value="res" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="kfbttW8s38c1ocRf18WO-13">
+          <mxGeometry x="0.1579" y="1" relative="1" as="geometry">
+            <mxPoint x="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-15" value="convert from str to json" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="565" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-16" value="/register and handle registration to db" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="700" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-22" value="convert json to string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="760" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-23" value="authenticate + autherise user" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="630" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-26" value="logg all aktivitet og forespørsler" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="600" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-27" value="compare runtime" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="800" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="kfbttW8s38c1ocRf18WO-28" value="route videre til riktig instans" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="670" width="220" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
