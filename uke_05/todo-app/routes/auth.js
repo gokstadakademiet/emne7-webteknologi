@@ -8,6 +8,8 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
+    console.log("[HERE]", username, password);
+
     try {
         // Sjekk om brukeren allerede eksisterer
         const [rows] = await db.query(
